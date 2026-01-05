@@ -1,0 +1,8 @@
+columns:
+  - BIOMASS: float64
+
+numeric_columns:
+  - 
+
+categorical_columns:
+  - 
