@@ -1,8 +1,44 @@
 columns:
-  - BIOMASS: float64
+  - RowNumber: int64
+  - CustomerId: int64
+  - Surname: object
+  - CreditScore: int64
+  - Geography: object
+  - Gender: object
+  - Age: int64
+  - Tenure: int64
+  - Balance: float64
+  - NumOfProducts: int64
+  - HasCrCard: int64
+  - IsActiveMember: int64
+  - EstimatedSalary: float64
+  - Exited: int64
+  - Complain: int64
+  - Satisfaction Score: int64
+  - Card Type: object
+  - Point Earned: int64
 
 numeric_columns:
-  - 
+  - RowNumber: int64
+  - CustomerId: int64
+  - CreditScore: int64
+  - Age: int64
+  - Tenure: int64
+  - Balance: float64
+  - NumOfProducts: int64
+  - HasCrCard: int64
+  - IsActiveMember: int64
+  - EstimatedSalary: float64
+  - Exited: int64
+  - Complain: int64
+  - Satisfaction Score: int64
+  - Point Earned: int64
+
+
 
 categorical_columns:
-  - 
+  - Surname: object
+  - Geography: object
+  - Gender: object
+  - Card Type: object
+
