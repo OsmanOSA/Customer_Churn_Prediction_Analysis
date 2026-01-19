@@ -10,7 +10,7 @@ class ChurnErrorException(Exception):
                  error_details: sys):
         
         self.error_message = error_message
-        _, _, exc_table = exec.info()
+        _, _, exc_table = error_details.exc_info()
 
         self.lineno = exc_table.tb_lineno
         self.filename = exc_table.tb_frame.f_code.co_filename
