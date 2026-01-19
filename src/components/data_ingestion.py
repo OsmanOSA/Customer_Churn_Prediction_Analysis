@@ -12,6 +12,7 @@ from src.exception.exception import ChurnErrorException
 from src.constant import config
 from src.constant.config import PATH_FILE_DATASET
 from src.entities.config_entity import DataIngestionConfig
+from src.entities.config_artifact import DataIngestionArtifact
 from src.utils.main_utils.utils import load_data
 from sklearn.model_selection import train_test_split
 
@@ -87,6 +88,11 @@ class DataIngestion:
 
             self.split_data_as_train_test_valid(data)
 
+            dataingestionartifact = DataIngestionArtifact(
+                trained_file_path=self.data_ingestion_config.training_file_path,
+                test_file_path=self.data_ingestion_config.testing_file_path)
+            
+            return dataingestionartifact
         
         except Exception as e:
             raise ChurnErrorException(e, sys)
