@@ -55,11 +55,6 @@ class DataIngestion:
             
             logging.info("Performed train test split on the dataframe.")
 
-            train_set, valid_set = train_test_split(train_set, 
-                                                   test_size=self.data_ingestion_config.train_valid_split_ratio, 
-                                                   random_state=0, shuffle=False)
-            
-            logging.info("Performed train valid split on the train set.")
 
             logging.info("Existed split_data_as_train_test_valid" \
                         "method of DataIngestion class.")
@@ -70,7 +65,6 @@ class DataIngestion:
             logging.info("Exporting train, valid and test set file path")
 
             train_set.to_csv(self.data_ingestion_config.training_file_path, header=True)
-            test_set.to_csv(self.data_ingestion_config.submission_file_path, header=True)
             test_set.to_csv(self.data_ingestion_config.testing_file_path, header=True)
 
             logging.info("Exported train, valid and test set file path")
