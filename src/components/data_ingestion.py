@@ -83,7 +83,7 @@ class DataIngestion:
                                      "datasets_churn.csv")
             
             data = load_data(file_path)
-
+            print(data.head())
             self.export_data_into_feature_store(data)
 
             self.split_data_as_train_test_valid(data)
