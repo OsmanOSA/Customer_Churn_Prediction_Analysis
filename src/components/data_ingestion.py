@@ -16,7 +16,7 @@ from src.entities.config_artifact import DataIngestionArtifact
 from src.utils.main_utils.utils import load_data
 from sklearn.model_selection import train_test_split
 
-BASE_DIR = Path.cwd().parent
+BASE_DIR = Path.cwd()
 
 
 class DataIngestion:
@@ -44,21 +44,21 @@ class DataIngestion:
             raise ChurnErrorException(e, sys)
         
     
-    def split_data_as_train_test_valid(self, 
+    def split_data_as_train_test_valid(self,
                                        dataframe: DataFrame
                                        ):
 
-        try: 
+        try:
 
-            train_set, test_set = train_test_split(dataframe, 
-                                  test_size=self.data_ingestion_config.train_test_split_ratio, 
+            train_set, test_set = train_test_split(dataframe,
+                                  test_size=self.data_ingestion_config.train_test_split_ratio,
                                                    random_state=0, shuffle=False)
-            
-            logging.info("Performed train test split on the dataframe.")
 
+            train_set, valid_set = train_test_split(train_set,
+                                  test_size=self.data_ingestion_config.train_valid_split_ratio,
+                                                    random_state=0, shuffle=False)
 
-            logging.info("Existed split_data_as_train_test_valid" \
-                        "method of DataIngestion class.")
+            logging.info("Performed train/valid/test split on the dataframe.")
 
             dir_path = os.path.dirname(self.data_ingestion_config.training_file_path)
             os.makedirs(dir_path, exist_ok=True)
@@ -66,6 +66,7 @@ class DataIngestion:
             logging.info("Exporting train, valid and test set file path")
 
             train_set.to_csv(self.data_ingestion_config.training_file_path, header=True)
+            valid_set.to_csv(self.data_ingestion_config.submission_file_path, header=True)
             test_set.to_csv(self.data_ingestion_config.testing_file_path, header=True)
 
             logging.info("Exported train, valid and test set file path")
@@ -83,13 +84,14 @@ class DataIngestion:
                                      "datasets_churn.csv")
             
             data = load_data(file_path)
-            print(data.head())
+
             self.export_data_into_feature_store(data)
 
             self.split_data_as_train_test_valid(data)
 
             dataingestionartifact = DataIngestionArtifact(
                 trained_file_path=self.data_ingestion_config.training_file_path,
+                submission_file_path=self.data_ingestion_config.submission_file_path,
                 test_file_path=self.data_ingestion_config.testing_file_path)
             
             return dataingestionartifact

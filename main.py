@@ -3,7 +3,7 @@ import sys
 
 from src.exception.exception import ChurnErrorException
 from src.logging.logger import logging
-from src.entities.config_entity import (DataIngestionConfig, TrainingPipelineConfig, )
+from src.entities.config_entity import (DataIngestionConfig, TrainingPipelineConfig)
 from src.components.data_ingestion import DataIngestion
 
 if __name__ == "__main__":
@@ -18,4 +18,4 @@ if __name__ == "__main__":
         logging.info("Data initiation completed")
     
     except Exception as e:
-        ChurnErrorException(e, sys)
+        raise ChurnErrorException(e, sys)

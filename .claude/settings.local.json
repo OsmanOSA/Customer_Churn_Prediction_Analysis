@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(d:/Customer_Churn_Prediction_Analysis/.venv/Scripts/python.exe -c \"import sklearn; print\\('sklearn OK:', sklearn.__version__\\); import skopt; print\\('skopt OK'\\)\")",
+      "Bash(cd D:/Customer_Churn_Prediction_Analysis && d:/Customer_Churn_Prediction_Analysis/.venv/Scripts/python.exe main.py 2>&1)"
+    ]
+  }
+}
