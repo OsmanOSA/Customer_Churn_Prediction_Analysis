@@ -38,7 +38,7 @@ class DataIngestion:
             feature_store_file_path = self.data_ingestion_config.feature_store_file_path
             dir_path = os.path.dirname(feature_store_file_path)
             os.makedirs(dir_path, exist_ok=True)
-            dataframe.to_csv(feature_store_file_path, header=True)
+            dataframe.to_csv(feature_store_file_path, index=False, header=True)
 
         except Exception as e:
             raise ChurnErrorException(e, sys)
@@ -65,9 +65,9 @@ class DataIngestion:
 
             logging.info("Exporting train, valid and test set file path")
 
-            train_set.to_csv(self.data_ingestion_config.training_file_path, header=True)
-            valid_set.to_csv(self.data_ingestion_config.submission_file_path, header=True)
-            test_set.to_csv(self.data_ingestion_config.testing_file_path, header=True)
+            train_set.to_csv(self.data_ingestion_config.training_file_path, index=False, header=True)
+            valid_set.to_csv(self.data_ingestion_config.submission_file_path, index=False, header=True)
+            test_set.to_csv(self.data_ingestion_config.testing_file_path, index=False, header=True)
 
             logging.info("Exported train, valid and test set file path")
             
